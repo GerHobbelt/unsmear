@@ -1,3 +1,8 @@
+> [!WARNING]
+> This project is no longer being maintained as a github open source library.
+> The source in the github repository is valid through 2025-12-31.
+
+
 # Unsmear
 
 This C++ library converts precisely between timestamps in the timescale of

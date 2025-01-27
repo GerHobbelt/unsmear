@@ -101,7 +101,7 @@ bool OutputTextProto(const unsmear::LeapTableProto& pb) {
 
 bool OutputJson(const unsmear::LeapTableProto& pb) {
   std::string s;
-  google::protobuf::util::JsonOptions opts;
+  google::protobuf::util::JsonPrintOptions opts;
   if (!google::protobuf::util::MessageToJsonString(pb, &s, opts).ok()) {
     return false;
   }

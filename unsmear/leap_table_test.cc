@@ -238,16 +238,16 @@ TEST_F(LeapTableTest, PastExpiration) {
 }
 
 TEST_F(LeapTableTest, ToProto) {
-  LeapTableProto proto2;
-  lt_->ToProto(&proto2);
+  LeapTableProto leap_proto;
+  lt_->ToProto(&leap_proto);
 
   std::string diffs;
   google::protobuf::util::MessageDifferencer differencer;
   differencer.set_report_matches(true);
   differencer.ReportDifferencesToString(&diffs);
-  ASSERT_TRUE(differencer.Compare(proto_, proto2)) << diffs;
+  ASSERT_TRUE(differencer.Compare(proto_, leap_proto)) << diffs;
 
-  auto lt2 = NewLeapTableFromProto(proto2);
+  auto lt2 = NewLeapTableFromProto(leap_proto);
   ASSERT_TRUE(lt2 != nullptr);
   ASSERT_EQ(*lt_, *lt2);
 }
@@ -256,10 +256,10 @@ TEST_F(LeapTableTest, EqualityOperators) {
   EXPECT_TRUE(*lt_ == *lt_);
   EXPECT_FALSE(*lt_ != *lt_);
 
-  LeapTableProto proto2;
-  proto2.add_positive_leaps(2441499);  // 1972-06-30 12:00:00 UTC
-  proto2.set_end_jdn(2442412);         // 1974-12-30 12:00:00 UTC
-  auto lt2 = NewLeapTableFromProto(proto2);
+  LeapTableProto leap_proto;
+  leap_proto.add_positive_leaps(2441499);  // 1972-06-30 12:00:00 UTC
+  leap_proto.set_end_jdn(2442412);         // 1974-12-30 12:00:00 UTC
+  auto lt2 = NewLeapTableFromProto(leap_proto);
   ASSERT_TRUE(lt2 != nullptr);
 
   EXPECT_FALSE(*lt_ == *lt2);
